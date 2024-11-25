@@ -23,11 +23,12 @@ class NoteCard extends StatelessWidget {
                   fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
-            subtitle: const Text(
+            subtitle: Text(
               'Buidl your career with Seif',
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              style:
+                  TextStyle(color: Colors.black.withOpacity(.7), fontSize: 20),
             ),
             trailing: Column(
               children: [
