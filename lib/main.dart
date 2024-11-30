@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:notes_app2/constants.dart';
 import 'package:notes_app2/view/edit_note_view.dart';
 import 'package:notes_app2/view/notes_view.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox(kNotesBox);
+
   runApp(const NotesApp());
 }
 
