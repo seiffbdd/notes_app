@@ -18,26 +18,26 @@ class _EditNoteViewState extends State<EditNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Edit Note',
-          style: const TextStyle(color: Colors.white, fontSize: 30),
+          style: TextStyle(color: Colors.white, fontSize: 30),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
+            padding: EdgeInsets.only(right: 16.0),
             child: CustomIcon(icon: Icons.check),
           )
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             CustomTextField(
               controller: titleController,
               hintText: 'Title',
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
