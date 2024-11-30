@@ -13,20 +13,21 @@ class NotesView extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
               context: context,
+              isScrollControlled: true,
               builder: (context) {
-                return AddNoteBottomSheet();
+                return const AddNoteBottomSheet();
               });
         },
         shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100),
         ),
         backgroundColor: const Color.fromARGB(255, 0, 247, 255),
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.black,
         ),
       ),
-      body: Padding(
+      body: const Padding(
         padding:
             EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
