@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
     this.hintText = '',
     required this.controller,
     this.maxLines = 1,
     this.textInputAction = TextInputAction.next,
     this.autoFocus = false,
+    this.validator,
   });
   final String hintText;
   final TextEditingController controller;
   final int maxLines;
   final TextInputAction textInputAction;
   final bool autoFocus;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       autofocus: autoFocus,
       controller: controller,
       maxLines: maxLines,
+      validator: validator,
       textInputAction: textInputAction,
       style: const TextStyle(
         color: Color.fromARGB(255, 0, 247, 255),

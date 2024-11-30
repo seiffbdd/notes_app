@@ -33,14 +33,14 @@ class _EditNoteViewState extends State<EditNoteView> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CustomTextField(
+            CustomTextFormField(
               controller: titleController,
               hintText: 'Title',
             ),
             const SizedBox(
               height: 20,
             ),
-            CustomTextField(
+            CustomTextFormField(
               controller: contentController,
               hintText: 'Content',
               maxLines: 6,
