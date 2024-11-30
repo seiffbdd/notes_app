@@ -7,15 +7,17 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.maxLines = 1,
     this.textInputAction = TextInputAction.next,
+    this.autoFocus = false,
   });
   final String hintText;
   final TextEditingController controller;
   final int maxLines;
   final TextInputAction textInputAction;
+  final bool autoFocus;
   @override
   Widget build(BuildContext context) {
     return TextField(
-      autofocus: true,
+      autofocus: autoFocus,
       controller: controller,
       maxLines: maxLines,
       textInputAction: textInputAction,

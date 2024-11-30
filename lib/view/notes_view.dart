@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app2/view/edit_note_view.dart';
 import 'package:notes_app2/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app2/widgets/custom_app_bar.dart';
 import 'package:notes_app2/widgets/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
+  static const String notesViewPath = 'notesViewPath';
   const NotesView({super.key});
 
   @override
@@ -27,11 +29,23 @@ class NotesView extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: const Padding(
+      body: Padding(
         padding:
             EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
-          children: [CustomAppBar(), Expanded(child: NotesListView())],
+          children: [
+            CustomAppBar(
+              icon: Icons.search,
+              title: 'Notes',
+            ),
+            Expanded(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, EditNoteView.editNoteViewPath);
+                    },
+                    child: NotesListView()))
+          ],
         ),
       ),
     );

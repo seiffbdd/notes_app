@@ -28,6 +28,7 @@ class _AddNoteBottomSheetState extends State<AddNoteBottomSheet> {
             CustomTextField(
               controller: titleController,
               hintText: 'Title',
+              autoFocus: true,
             ),
             const SizedBox(
               height: 20,
