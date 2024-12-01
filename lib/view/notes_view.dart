@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app2/view/edit_note_view.dart';
-import 'package:notes_app2/widgets/add_note_bottom_sheet.dart';
+import 'package:notes_app2/widgets/build_bottom_sheet.dart';
 import 'package:notes_app2/widgets/custom_app_bar.dart';
 import 'package:notes_app2/widgets/notes_list_view.dart';
 
@@ -17,7 +17,7 @@ class NotesView extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               builder: (context) {
-                return const AddNoteBottomSheet();
+                return const BuildBottomSheet();
               });
         },
         shape: OutlineInputBorder(
