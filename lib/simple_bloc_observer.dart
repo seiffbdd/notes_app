@@ -1,10 +1,10 @@
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 
 class SimpleBlocObserver implements BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
-    debugPrint('change ==========> $change');
+    log('change ==========> $change');
   }
 
   @override
