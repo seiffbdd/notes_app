@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app2/cubits/get_notes_cubit/cubit/get_notes_cubit.dart';
 import 'package:notes_app2/view/edit_note_view.dart';
 import 'package:notes_app2/widgets/build_bottom_sheet.dart';
 import 'package:notes_app2/widgets/custom_app_bar.dart';
@@ -10,42 +12,45 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) {
-                return const BuildBottomSheet();
-              });
-        },
-        shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
+    return BlocProvider(
+      create: (context) => GetNotesCubit(),
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return const BuildBottomSheet();
+                });
+          },
+          shape: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          backgroundColor: const Color.fromARGB(255, 0, 247, 255),
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
         ),
-        backgroundColor: const Color.fromARGB(255, 0, 247, 255),
-        child: const Icon(
-          Icons.add,
-          color: Colors.black,
-        ),
-      ),
-      body: Padding(
-        padding:
-            EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0, bottom: 16.0),
-        child: Column(
-          children: [
-            CustomAppBar(
-              icon: Icons.search,
-              title: 'Notes',
-            ),
-            Expanded(
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, EditNoteView.editNoteViewPath);
-                    },
-                    child: NotesListView()))
-          ],
+        body: Padding(
+          padding:
+              EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0, bottom: 16.0),
+          child: Column(
+            children: [
+              CustomAppBar(
+                icon: Icons.search,
+                title: 'Notes',
+              ),
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, EditNoteView.editNoteViewPath);
+                      },
+                      child: NotesListView()))
+            ],
+          ),
         ),
       ),
     );

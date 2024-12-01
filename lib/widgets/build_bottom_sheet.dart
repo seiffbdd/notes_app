@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:notes_app2/cubits/cubit/add_note_cubit.dart';
+import 'package:notes_app2/cubits/add_notes_cubit/cubit/add_note_cubit.dart';
 import 'package:notes_app2/widgets/add_note_form.dart';
 
 class BuildBottomSheet extends StatefulWidget {
@@ -17,12 +17,8 @@ class _AddNoteBottomSheetState extends State<BuildBottomSheet> {
   GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-          top: 24.0,
-          right: 16.0,
-          left: 16.0,
-          bottom: MediaQuery.of(context).viewInsets.bottom),
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
       child: BlocConsumer<AddNoteCubit, AddNoteState>(
         listener: (context, state) {
           if (state is AddNoteFairlure) {
@@ -36,10 +32,17 @@ class _AddNoteBottomSheetState extends State<BuildBottomSheet> {
         builder: (context, state) {
           return ModalProgressHUD(
             inAsyncCall: state is AddNoteLoading ? true : false,
-            child: AddNoteForm(
-                formKey: formKey,
-                titleController: titleController,
-                contentController: contentController),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: 24.0,
+                  right: 16.0,
+                  left: 16.0,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: AddNoteForm(
+                  formKey: formKey,
+                  titleController: titleController,
+                  contentController: contentController),
+            ),
           );
         },
       ),
