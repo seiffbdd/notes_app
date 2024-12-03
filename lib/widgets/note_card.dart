@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app2/models/note_model.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key});
+  const NoteCard({
+    super.key,
+    required this.note,
+  });
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       decoration: BoxDecoration(
-          color: Colors.orange[200], borderRadius: BorderRadius.circular(20)),
+          color: Color(note.color), borderRadius: BorderRadius.circular(20)),
       height: MediaQuery.of(context).size.height / 4,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
           ListTile(
-            title: const Text(
-              'Flutter Tips',
+            title: Text(
+              note.title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -24,7 +29,7 @@ class NoteCard extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-              'Buidl your career with Seif',
+              note.content,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style:
@@ -43,12 +48,12 @@ class NoteCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(right: 24.0),
             child: Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                'May 21,2022',
+                note.date.substring(0, 10),
                 style: TextStyle(color: Colors.black, fontSize: 15),
               ),
             ),
