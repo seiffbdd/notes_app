@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app2/cubits/add_notes_cubit/cubit/add_note_cubit.dart';
+import 'package:notes_app2/cubits/get_notes_cubit/cubit/get_notes_cubit.dart';
 import 'package:notes_app2/models/note_model.dart';
 import 'package:notes_app2/widgets/custom_button.dart';
 import 'package:notes_app2/widgets/custom_text_field.dart';
@@ -58,6 +60,8 @@ class AddNoteForm extends StatelessWidget {
                       content: contentController.text,
                       date: DateTime.now().toString(),
                       color: Colors.blue.value));
+
+                  BlocProvider.of<GetNotesCubit>(context).getNotes();
                 }
               },
             )
