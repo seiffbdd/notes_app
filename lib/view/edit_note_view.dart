@@ -4,6 +4,7 @@ import 'package:notes_app2/cubits/get_notes_cubit/cubit/get_notes_cubit.dart';
 import 'package:notes_app2/models/note_model.dart';
 import 'package:notes_app2/widgets/custom_search_icon.dart';
 import 'package:notes_app2/widgets/custom_text_field.dart';
+import 'package:notes_app2/widgets/edit_note_colors_list.dart';
 
 class EditNoteView extends StatefulWidget {
   static const String editNoteViewPath = 'editNoteViewPath';
@@ -20,14 +21,15 @@ class EditNoteView extends StatefulWidget {
 }
 
 class _EditNoteViewState extends State<EditNoteView> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController contentController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    titleController.text = widget.note?.title ?? 'title';
-    contentController.text = widget.note?.content ?? 'content';
+    _titleController.text = widget.note?.title ?? 'title';
+    _contentController.text = widget.note?.content ?? 'content';
   }
 
   @override
@@ -43,11 +45,13 @@ class _EditNoteViewState extends State<EditNoteView> {
             padding: EdgeInsets.only(right: 16.0),
             child: GestureDetector(
                 onTap: () {
-                  widget.note!.title = titleController.text;
-                  widget.note!.content = contentController.text;
-                  widget.note!.save();
-                  Navigator.pop(context);
-                  BlocProvider.of<GetNotesCubit>(context).getNotes();
+                  if (_formKey.currentState!.validate()) {
+                    widget.note!.title = _titleController.text;
+                    widget.note!.content = _contentController.text;
+                    widget.note!.save();
+                    Navigator.pop(context);
+                    BlocProvider.of<GetNotesCubit>(context).getNotes();
+                  }
                 },
                 child: CustomIcon(icon: Icons.check)),
           )
@@ -55,21 +59,42 @@ class _EditNoteViewState extends State<EditNoteView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            CustomTextFormField(
-              controller: titleController,
-              hintText: 'Title',
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomTextFormField(
+                  controller: _titleController,
+                  hintText: 'Title',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'title can\'t be empty';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextFormField(
+                  controller: _contentController,
+                  hintText: 'Content',
+                  maxLines: 6,
+                  textInputAction: TextInputAction.newline,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                    height: 2 * 38,
+                    child: EditNoteColorsList(
+                      note: widget.note!,
+                    ))
+              ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomTextFormField(
-              controller: contentController,
-              hintText: 'Content',
-              maxLines: 6,
-            )
-          ],
+          ),
         ),
       ),
     );
