@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app2/cubits/add_notes_cubit/cubit/add_note_cubit.dart';
 import 'package:notes_app2/cubits/get_notes_cubit/cubit/get_notes_cubit.dart';
 import 'package:notes_app2/models/note_model.dart';
+import 'package:notes_app2/widgets/colors_list_view.dart';
 import 'package:notes_app2/widgets/custom_button.dart';
 import 'package:notes_app2/widgets/custom_text_field.dart';
 
@@ -48,7 +49,11 @@ class AddNoteForm extends StatelessWidget {
               textInputAction: TextInputAction.newline,
             ),
             const SizedBox(
-              height: 60,
+              height: 20,
+            ),
+            SizedBox(height: 2 * 34, child: ColorsListView()),
+            const SizedBox(
+              height: 20,
             ),
             CustomButton(
               buttonText: 'Add',
