@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app2/constants.dart';
 import 'package:notes_app2/models/note_model.dart';
-import 'package:notes_app2/widgets/colors_list_view.dart';
 import 'package:notes_app2/widgets/custom_circle_avatar.dart';
 
 class EditNoteColorsList extends StatefulWidget {
@@ -43,6 +42,5 @@ class _EditNoteColorsListState extends State<EditNoteColorsList> {
             ));
       },
     );
-    ;
   }
 }
