@@ -61,10 +61,10 @@ class AddNoteForm extends StatelessWidget {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
                   AddNoteCubit.get(context).addNote(NoteModel(
-                      title: titleController.text,
-                      content: contentController.text,
-                      date: DateTime.now().toString(),
-                      color: Colors.blue.value));
+                    title: titleController.text,
+                    content: contentController.text,
+                    date: DateTime.now().toString(),
+                  ));
 
                   BlocProvider.of<GetNotesCubit>(context).getNotes();
                 }

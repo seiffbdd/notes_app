@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app2/cubits/add_notes_cubit/cubit/add_note_cubit.dart';
 
 class ColorsListView extends StatefulWidget {
   const ColorsListView({super.key});
@@ -17,6 +18,7 @@ class _ColorsListViewState extends State<ColorsListView> {
   int pickedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    AddNoteCubit.get(context).color = ColorsListView.colors[pickedIndex];
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: ColorsListView.colors.length,
