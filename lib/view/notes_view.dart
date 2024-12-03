@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app2/cubits/get_notes_cubit/cubit/get_notes_cubit.dart';
-import 'package:notes_app2/view/edit_note_view.dart';
 import 'package:notes_app2/widgets/build_bottom_sheet.dart';
 import 'package:notes_app2/widgets/custom_app_bar.dart';
 import 'package:notes_app2/widgets/notes_list_view.dart';
@@ -52,13 +51,7 @@ class _NotesViewState extends State<NotesView> {
               icon: Icons.search,
               title: 'Notes',
             ),
-            Expanded(
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, EditNoteView.editNoteViewPath);
-                    },
-                    child: NotesListView()))
+            Expanded(child: NotesListView())
           ],
         ),
       ),
